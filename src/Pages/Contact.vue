@@ -4,17 +4,17 @@
       <div class="form-container">
         <form action="">
         <label for="Name">Full name: </label>
-        <input type="text" name="Name" id="name">
+        <input type="text" name="Name" id="name" v-model="email.name">
 
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" v-model="email.mailAdress" >
 
         <label for="subject">Subject:</label>
-        <input type="text" name="subject" id="subject">
+        <input type="text" name="subject" id="subject" v-model="email.subject">
         
         <label for="message">Message: </label>
-        <textarea  name="message" placeholder="Write your message..." style="height:100px"></textarea>
-        <button type="submit" class="btn">Submit</button>
+        <textarea  name="message" placeholder="Write your message..." style="height:100px" v-model="email.message"></textarea>
+        <button type="submit" class="btn" @click.prevent="sendMail()">Submit</button>
       </form>
       </div>
       
@@ -22,7 +22,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  data(){
+    return{
+      email : {
+        name : '',
+        mailAdress : '',
+        subject : '',
+        message : ''
+
+      },
+      
+    }
+
+  }, 
+  methods: {
+    sendMail(){
+      axios.post("http://localhost:3001/api/contact",this.email);
+      for (var prop in this.email) this.email[prop] = '';
+      
+
+    }
+  }
 
 }
 </script>

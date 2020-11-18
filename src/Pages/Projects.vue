@@ -7,9 +7,11 @@
             <p>Created the {{item.created_at}}</p>
             <a :href="item.html_url"><h2>{{item.name}}</h2></a>
           </header>
+
           <div class="card-author">
-            <p>Updated at {{item.updated_at}}</p>
+            <p>Updated  {{item.updated_at}}</p>
             <p>{{item.description}}</p>
+            <a :href="item.homepage">{{item.homepage}}</a>
           </div>
 
           <div class="tags">
@@ -22,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+import moment from "moment";
 export default {
   name: 'Projects',
 data() {
@@ -47,6 +50,11 @@ async created(){
     const response = await axios.get('http://localhost:5000/api/projects')
     console.log(response.data)
     this.items =  await response.data;
+    this.items.forEach(item => {
+      item.created_at = moment(item.created_at).format('MMMM Do YYYY');
+      item.updated_at = moment(item.updated_at, 'YYYYMMDD').local(true).fromNow()
+    });
+    this.items.sort((a,b) => a.updated_at > b.updated_at)
   } catch (error) {
     this.error =error
   }
@@ -136,4 +144,20 @@ h1{
     border-color: white;
 }
 
+
+.card-author{
+  
+  color: #7a7a8c;
+  font-weight: 700;
+}
+
+.card-author a{
+  text-decoration: none;
+  font-weight: 500;
+  color: lightgray;
+}
+
+.card-author a:hover{
+  color: white;
+}
 </style>

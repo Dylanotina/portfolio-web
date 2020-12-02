@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <div class="container">
-          <router-link :to="{ name : 'home'}">Je suis le header</router-link>
+          <router-link :to="{ name : 'home'}">My portfolio</router-link>
           <HeaderMenu></HeaderMenu>
       </div>
   </div>

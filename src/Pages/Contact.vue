@@ -27,7 +27,7 @@ export default {
   data(){
     return{
       email : {
-        name : '',
+        name : undefined,
         mailAdress : '',
         subject : '',
         message : ''

@@ -2,6 +2,7 @@
   <div>
     <h1>My Projects</h1>
       <section class="card-list" >
+        <p v-if="items.length == 0" class="Loading">Loading...</p>
         <article v-for="item in items" :key="item.key" class="card">
           <header class="card-header">
             <p>Created the {{item.created_at}}</p>
@@ -30,13 +31,6 @@ export default {
 data() {
   return{
   items : [
-    { name : 'Ceci est test1', key:1},
-    { name : 'Ceci est test2',key:2},
-    { name : 'Ceci est test3',key:3},
-    { name : 'Ceci est test4',key:4},
-    { name : 'Ceci est test5',key:5},
-    { name : 'Ceci est test6',key:6},
-    { name : 'Ceci est test7',key:7}
   ]
   }
 },
@@ -47,8 +41,7 @@ methods :{
 },
 async created(){
   try {
-    const response = await axios.get('http://localhost:5000/api/projects')
-    console.log(response.data)
+    const response = await axios.get('http://localhost:3002/api/projects')
     this.items =  await response.data;
     this.items.forEach(item => {
       item.created_at = moment(item.created_at).format('MMMM Do YYYY');
@@ -159,5 +152,10 @@ h1{
 
 .card-author a:hover{
   color: white;
+}
+
+.Loading{
+  font-size: 25px;
+  font-weight: 500;
 }
 </style>

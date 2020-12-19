@@ -2,7 +2,7 @@
   <div class="main_container">
       <div class="main_acceuil">
         <h1>Dylan Otina</h1>
-        <p>Bienvenue sur mon site</p>
+        <p>Welcome on my portfolio</p>
         <button @click="$router.push('projects')" class="btn">See my projects</button>
       </div>
   </div>

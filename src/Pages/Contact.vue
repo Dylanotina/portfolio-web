@@ -39,7 +39,7 @@ export default {
   }, 
   methods: {
     sendMail(){
-      axios.post("http://localhost:3001/api/contact",this.email);
+      axios.post("http://dylanotina.website/api/contact",this.email).catch(err => console.log(err));
       for (var prop in this.email) this.email[prop] = '';
       
 

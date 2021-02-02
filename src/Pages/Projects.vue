@@ -41,13 +41,15 @@ methods :{
 },
 async created(){
   try {
-    const response = await axios.get('http://localhost:3002/api/projects')
+    const response = await axios.get('http://dylanotina.website/api/projects')
     this.items =  await response.data;
+    this.items.sort((a,b) => new Date(b.updated_at) > new Date(a.updated_at))
     this.items.forEach(item => {
       item.created_at = moment(item.created_at).format('MMMM Do YYYY');
       item.updated_at = moment(item.updated_at, 'YYYYMMDD').local(true).fromNow()
     });
-    this.items.sort((a,b) => a.updated_at > b.updated_at)
+    
+    console.log(this.items);
   } catch (error) {
     this.error =error
   }

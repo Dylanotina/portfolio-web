@@ -67,4 +67,19 @@ h1{
   text-align: center;
 }
 
+
+@media only screen and (max-width: 768px) {
+  .about_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about_image img{
+    margin-left: -120px;
+  }
+}
+
+
 </style>

@@ -41,7 +41,7 @@ methods :{
 },
 async created(){
   try {
-    const response = await axios.get('http://dylanotina.website/api/projects')
+    const response = await axios.get('http://localhost:5000/api/projects')
     this.items =  await response.data;
     this.items.sort((a,b) => new Date(b.updated_at) > new Date(a.updated_at))
     this.items.forEach(item => {
@@ -159,5 +159,30 @@ h1{
 .Loading{
   font-size: 25px;
   font-weight: 500;
+}
+
+
+@media only screen and (max-width: 768px) {
+.card-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto !important;
+  overflow: scroll;
+}
+.card{
+  position: relative;
+  width: 200px;
+}
+
+.card:not(:first-child){
+  margin-top: 50px;
+  margin-left: 0px;
+}
+.card-header h2{
+  font-size: 16px;
+}
+  
 }
 </style>
